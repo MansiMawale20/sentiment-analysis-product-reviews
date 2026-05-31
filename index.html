@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        AnalyzeIQ
+    </title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Arial;
+
+            background: linear-gradient(
+                135deg,
+                #07122b,
+                #0d1b3d
+            );
+
+            color: white;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 50px;
+
+            background: rgba(0,0,0,0.25);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #00b7ff;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+
+            color: #00b7ff;
+        }
+
+        /* ========================= */
+        /* HERO */
+        /* ========================= */
+
+        .hero {
+
+            width: 90%;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            min-height: 90vh;
+
+            flex-wrap: wrap;
+        }
+
+        .hero-left {
+
+            width: 50%;
+        }
+
+        .hero-left h1 {
+
+            font-size: 65px;
+
+            line-height: 85px;
+
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+
+            color: #00b7ff;
+        }
+
+        .hero-left p {
+
+            color: #ccc;
+
+            font-size: 20px;
+
+            line-height: 35px;
+
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons a {
+
+            text-decoration: none;
+
+            padding: 16px 28px;
+
+            border-radius: 12px;
+
+            margin-right: 15px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+
+            background: #00b7ff;
+
+            color: white;
+        }
+
+        .btn-primary:hover {
+
+            background: #0095d4;
+        }
+
+        .btn-secondary {
+
+            border: 2px solid #00b7ff;
+
+            color: #00b7ff;
+        }
+
+        .btn-secondary:hover {
+
+            background: #00b7ff;
+
+            color: white;
+        }
+
+        /* ========================= */
+        /* HERO RIGHT */
+        /* ========================= */
+
+        .hero-right {
+
+            width: 40%;
+
+            text-align: center;
+        }
+
+        .dashboard-preview {
+
+            width: 100%;
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 30px;
+
+            border-radius: 25px;
+        }
+
+        .dashboard-preview img {
+
+            width: 100%;
+
+            border-radius: 15px;
+        }
+
+        /* ========================= */
+        /* FEATURES */
+        /* ========================= */
+
+        .features {
+
+            width: 90%;
+
+            margin: auto;
+
+            padding-top: 80px;
+
+            padding-bottom: 80px;
+        }
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 45px;
+
+            margin-bottom: 60px;
+        }
+
+        .feature-grid {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+
+            width: 300px;
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+
+            transform: translateY(-10px);
+        }
+
+        .feature-card h2 {
+
+            color: #00b7ff;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card p {
+
+            color: #ccc;
+
+            line-height: 30px;
+        }
+
+        /* ========================= */
+        /* ABOUT */
+        /* ========================= */
+
+        .about {
+
+            width: 90%;
+
+            margin: auto;
+
+            padding-bottom: 100px;
+
+            text-align: center;
+        }
+
+        .about p {
+
+            color: #ccc;
+
+            line-height: 35px;
+
+            font-size: 20px;
+
+            margin-top: 30px;
+        }
+
+        /* ========================= */
+        /* FOOTER */
+        /* ========================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px;
+
+            background: rgba(0,0,0,0.25);
+
+            color: #ccc;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AnalyzeIQ
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/login">
+                Login
+            </a>
+
+            <a href="/register">
+                Register
+            </a>
+
+            <a href="/product">
+                Analyze
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- HERO SECTION -->
+
+    <div class="hero">
+
+        <div class="hero-left">
+
+            <h1>
+
+                AI Powered
+
+                <span class="highlight">
+
+                    Product Review
+
+                </span>
+
+                Analyzer
+
+            </h1>
+
+            <p>
+
+                Analyze real Amazon customer reviews using
+                Artificial Intelligence, Sentiment Analysis,
+                Fake Review Detection and Data Visualization.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="/register"
+                    class="btn-primary"
+                >
+
+                    Get Started
+
+                </a>
+
+                <a
+                    href="/login"
+                    class="btn-secondary"
+                >
+
+                    Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+            <div class="dashboard-preview">
+
+                <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FEATURES -->
+
+    <div class="features">
+
+        <h1 class="section-title">
+
+            AI Features
+
+        </h1>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h2>
+                    Sentiment Analysis
+                </h2>
+
+                <p>
+
+                    Detect positive, negative and neutral
+                    customer reviews using Artificial Intelligence.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h2>
+                    Fake Review Detection
+                </h2>
+
+                <p>
+
+                    Identify suspicious and fake product reviews
+                    using AI-based analysis techniques.
+
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h2>
+                    Analytics Dashboard
+                </h2>
+
+                <p>
+
+                    Visualize review analytics using
+                    interactive charts and dashboard reports.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div class="about">
+
+        <h1 class="section-title">
+
+            About Project
+
+        </h1>
+
+        <p>
+
+            AnalyzeIQ is an AI-based Universal Product Review
+            Analysis System developed as a Final Year Project.
+            The system collects real product reviews,
+            performs sentiment analysis, detects fake reviews,
+            and generates intelligent analytics dashboards
+            for better customer decision-making.
+
+        </p>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 AnalyzeIQ | AI Powered Amazon Review Sentiment Analytics
+
+    </footer>
+
+</body>
+
+</html>

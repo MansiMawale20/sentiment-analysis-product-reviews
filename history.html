@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Product Analysis History
+    </title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Arial;
+
+            background: linear-gradient(
+                135deg,
+                #07122b,
+                #0d1b3d
+            );
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 40px;
+
+            background: rgba(0,0,0,0.25);
+        }
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #00b7ff;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+        }
+
+        /* ========================= */
+        /* MAIN */
+        /* ========================= */
+
+        .container {
+
+            width: 95%;
+
+            margin: auto;
+
+            padding-top: 40px;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #ccc;
+
+            margin-bottom: 40px;
+        }
+
+        /* ========================= */
+        /* TABLE */
+        /* ========================= */
+
+        .table-box {
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 20px;
+
+            border-radius: 25px;
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+        }
+
+        th {
+
+            background: #00b7ff;
+
+            padding: 18px;
+
+            text-align: center;
+        }
+
+        td {
+
+            padding: 18px;
+
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+
+            background: rgba(255,255,255,0.05);
+        }
+
+        .green {
+
+            color: #16a34a;
+
+            font-weight: bold;
+        }
+
+        .red {
+
+            color: #dc2626;
+
+            font-weight: bold;
+        }
+
+        .yellow {
+
+            color: #eab308;
+
+            font-weight: bold;
+        }
+
+        .recommend {
+
+            background: green;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AnalyzeIQ
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/product">
+                Analyze Product
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <h1>
+            Product Analysis History
+        </h1>
+
+        <div class="subtitle">
+
+            Previously analyzed products
+
+        </div>
+
+        <div class="table-box">
+
+            <table>
+
+                <tr>
+
+                    <th>Sr. No.</th>
+
+                    <th>Product</th>
+
+                    <th>Rating</th>
+
+                    <th>Positive</th>
+
+                    <th>Neutral</th>
+
+                    <th>Negative</th>
+
+                    <th>Recommendation</th>
+
+                </tr>
+
+                {% for product in all_products %}
+
+                <tr>
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+                    <td>
+                        {{ product.product_name }}
+                    </td>
+
+                    <td>
+                        {{ product.product_rating }}
+                    </td>
+
+                    <td class="green">
+
+                        {{ product.pos_count }}
+
+                    </td>
+
+                    <td class="yellow">
+
+                        {{ product.neutral_count }}
+
+                    </td>
+
+                    <td class="red">
+
+                        {{ product.neg_count }}
+
+                    </td>
+
+                    <td>
+
+                        <span class="recommend">
+
+                            Recommended
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

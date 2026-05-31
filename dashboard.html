@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Analytics Dashboard
+    </title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: Arial;
+
+            background: linear-gradient(
+                135deg,
+                #07122b,
+                #0d1b3d
+            );
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 40px;
+
+            background: rgba(0,0,0,0.25);
+        }
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #00b7ff;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+        }
+
+        /* ========================= */
+        /* MAIN */
+        /* ========================= */
+
+        .container {
+
+            width: 90%;
+
+            margin: auto;
+
+            padding-top: 40px;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #ccc;
+
+            margin-bottom: 50px;
+        }
+
+        /* ========================= */
+        /* CARDS */
+        /* ========================= */
+
+        .cards {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            flex-wrap: wrap;
+        }
+
+        .card {
+
+            width: 240px;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.08);
+        }
+
+        .card h2 {
+
+            font-size: 40px;
+
+            margin-top: 15px;
+
+            color: #00b7ff;
+        }
+
+        /* ========================= */
+        /* CHARTS */
+        /* ========================= */
+
+        .charts-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 40px;
+
+            flex-wrap: wrap;
+
+            margin-top: 60px;
+
+            padding-bottom: 60px;
+        }
+
+        .chart-box {
+
+            width: 420px;
+
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AnalyzeIQ
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/product">
+                Analyze Product
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <h1>
+            Analytics Dashboard
+        </h1>
+
+        <div class="subtitle">
+
+            Real AI Product Review Analytics
+
+        </div>
+
+        <!-- ANALYTICS CARDS -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                Total Products
+
+                <h2>
+                    {{ total_products }}
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                Positive Reviews
+
+                <h2>
+                    {{ total_positive }}
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                Neutral Reviews
+
+                <h2>
+                    {{ total_neutral }}
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                Negative Reviews
+
+                <h2>
+                    {{ total_negative }}
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- CHARTS -->
+
+        <div class="charts-container">
+
+            <!-- PIE CHART -->
+
+            <div class="chart-box">
+
+                <canvas id="pieChart"></canvas>
+
+            </div>
+
+            <!-- BAR CHART -->
+
+            <div class="chart-box">
+
+                <canvas id="barChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        const positive = Number(
+            "{{ total_positive }}"
+        );
+
+        const neutral = Number(
+            "{{ total_neutral }}"
+        );
+
+        const negative = Number(
+            "{{ total_negative }}"
+        );
+
+        /* ========================= */
+        /* PIE CHART */
+        /* ========================= */
+
+        const pieCtx = document.getElementById(
+            'pieChart'
+        );
+
+        new Chart(pieCtx, {
+
+            type: 'pie',
+
+            data: {
+
+                labels: [
+
+                    'Positive',
+                    'Neutral',
+                    'Negative'
+                ],
+
+                datasets: [{
+
+                    data: [
+
+                        positive,
+                        neutral,
+                        negative
+                    ],
+
+                    backgroundColor: [
+
+                        '#16a34a',
+                        '#ca8a04',
+                        '#dc2626'
+                    ]
+                }]
+            }
+        });
+
+        /* ========================= */
+        /* BAR CHART */
+        /* ========================= */
+
+        const barCtx = document.getElementById(
+            'barChart'
+        );
+
+        new Chart(barCtx, {
+
+            type: 'bar',
+
+            data: {
+
+                labels: [
+
+                    'Positive',
+                    'Neutral',
+                    'Negative'
+                ],
+
+                datasets: [{
+
+                    label: 'Review Count',
+
+                    data: [
+
+                        positive,
+                        neutral,
+                        negative
+                    ],
+
+                    backgroundColor: [
+
+                        '#16a34a',
+                        '#ca8a04',
+                        '#dc2626'
+                    ]
+                }]
+            },
+
+            options: {
+
+                responsive: true,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

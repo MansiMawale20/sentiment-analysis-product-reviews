@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Amazon Review Intelligence Platform
+    </title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background: linear-gradient(
+                135deg,
+                #07122b,
+                #0d1b3d
+            );
+
+            color: white;
+
+            font-family: Arial;
+
+            min-height: 100vh;
+        }
+
+        /* ========================= */
+        /* NAVBAR */
+        /* ========================= */
+
+        .navbar {
+
+            width: 100%;
+
+            padding: 20px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: rgba(0,0,0,0.25);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #00b7ff;
+        }
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+        }
+
+        /* ========================= */
+        /* MAIN */
+        /* ========================= */
+
+        .container {
+
+            width: 90%;
+
+            margin: auto;
+
+            padding-top: 40px;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #ccc;
+
+            margin-bottom: 40px;
+        }
+
+        .top-section {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        input {
+
+            width: 60%;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        button {
+
+            padding: 16px 25px;
+
+            background: #00b7ff;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            margin-left: 10px;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+
+            background: #0095d4;
+        }
+
+        .result-box {
+
+            margin-top: 30px;
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 40px;
+
+            border-radius: 25px;
+        }
+
+        /* ========================= */
+        /* PRODUCT */
+        /* ========================= */
+
+        .product-section {
+
+            text-align: center;
+        }
+
+        .product-image-box {
+
+            width: 260px;
+
+            height: 260px;
+
+            background: white;
+
+            margin: 25px auto;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .product-image-box img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+        .rating {
+
+            font-size: 30px;
+
+            margin-top: 15px;
+
+            color: gold;
+        }
+
+        .recommend {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            background: green;
+
+            font-weight: bold;
+
+            font-size: 15px;
+        }
+
+        /* ========================= */
+        /* STATS */
+        /* ========================= */
+
+        .stats {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-top: 50px;
+
+            flex-wrap: wrap;
+        }
+
+        .card {
+
+            width: 220px;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .positive {
+
+            background: #16a34a;
+        }
+
+        .neutral {
+
+            background: #ca8a04;
+        }
+
+        .negative {
+
+            background: #dc2626;
+        }
+
+        /* ========================= */
+        /* REVIEWS */
+        /* ========================= */
+
+        .review-section {
+
+            margin-top: 60px;
+        }
+
+        .review-title {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .review-card {
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 15px;
+        }
+
+        .review-card p {
+
+            line-height: 28px;
+        }
+
+        .badge {
+
+            padding: 8px 14px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            margin-right: 10px;
+        }
+
+        .green {
+
+            background: green;
+        }
+
+        .red {
+
+            background: red;
+        }
+
+        .yellow {
+
+            background: orange;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <div class="logo">
+
+            AnalyzeIQ
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/product">
+                Analyze Product
+            </a>
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <h1>
+            Amazon Review Intelligence Platform
+        </h1>
+
+        <div class="subtitle">
+
+            AI Powered Amazon Review Sentiment Analytics
+
+        </div>
+
+        <div class="top-section">
+
+            <input
+                type="text"
+                id="productUrl"
+                placeholder="Enter Amazon Product URL"
+            >
+
+            <button onclick="analyzeProduct()">
+
+                Analyze
+
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        async function analyzeProduct() {
+
+            const url = document.getElementById(
+                "productUrl"
+            ).value;
+
+            if (!url) {
+
+                alert(
+                    "Please enter Amazon URL"
+                );
+
+                return;
+            }
+
+            document.getElementById(
+                "result"
+            ).innerHTML = `
+
+                <div class="result-box">
+
+                    <h2 style="text-align:center">
+
+                        Analyzing Product...
+
+                    </h2>
+
+                </div>
+            `;
+
+            try {
+
+                const response = await fetch(
+
+                    "/analyze_amazon",
+
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                            "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            url: url
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                let reviewsHTML = "";
+
+                data.reviews.forEach(review => {
+
+                    let sentimentColor = "yellow";
+
+                    if (
+                        review.sentiment === "Positive"
+                    ) {
+
+                        sentimentColor = "green";
+                    }
+
+                    else if (
+                        review.sentiment === "Negative"
+                    ) {
+
+                        sentimentColor = "red";
+                    }
+
+                    reviewsHTML += `
+
+                        <div class="review-card">
+
+                            <p>
+                                ${review.review}
+                            </p>
+
+                            <span class="badge ${sentimentColor}">
+
+                                ${review.sentiment}
+
+                            </span>
+
+                            <span class="badge">
+
+                                ${review.fake_review}
+
+                            </span>
+
+                        </div>
+                    `;
+                });
+
+                document.getElementById(
+                    "result"
+                ).innerHTML = `
+
+                    <div class="result-box">
+
+                        <div class="product-section">
+
+                            <h2>
+                                ${data.product_name}
+                            </h2>
+
+                            <div class="product-image-box">
+
+                                <img src="${data.product_image}">
+
+                            </div>
+
+                            <div class="rating">
+
+                                ⭐ ${data.product_rating}
+
+                            </div>
+
+                            <div class="recommend">
+
+                                ${data.recommendation}
+
+                            </div>
+
+                        </div>
+
+                        <div class="stats">
+
+                            <div class="card positive">
+
+                                Positive
+
+                                <br><br>
+
+                                ${data.positive}
+
+                            </div>
+
+                            <div class="card neutral">
+
+                                Neutral
+
+                                <br><br>
+
+                                ${data.neutral}
+
+                            </div>
+
+                            <div class="card negative">
+
+                                Negative
+
+                                <br><br>
+
+                                ${data.negative}
+
+                            </div>
+
+                        </div>
+
+                        <div class="review-section">
+
+                            <h2 class="review-title">
+
+                                Real AI Analyzed Reviews
+
+                            </h2>
+
+                            ${reviewsHTML}
+
+                        </div>
+
+                    </div>
+                `;
+
+            } catch (error) {
+
+                console.log(error);
+
+                document.getElementById(
+                    "result"
+                ).innerHTML = `
+
+                    <div class="result-box">
+
+                        <h2 style="text-align:center">
+
+                            Analysis Failed
+
+                        </h2>
+
+                    </div>
+                `;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

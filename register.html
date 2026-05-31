@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Register
+    </title>
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial;
+
+            background: linear-gradient(
+                135deg,
+                #07122b,
+                #0d1b3d
+            );
+
+            color: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+        }
+
+        .register-box {
+
+            width: 420px;
+
+            background: rgba(255,255,255,0.08);
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+        h1 {
+
+            margin-bottom: 30px;
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 25px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #00b7ff;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        a {
+
+            color: #00b7ff;
+
+            text-decoration: none;
+        }
+
+        .bottom {
+
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <form
+        class="register-box"
+        method="POST"
+    >
+
+        <h1>
+            Create Account
+        </h1>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            required
+        >
+
+        <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+
+        <button type="submit">
+
+            Register
+
+        </button>
+
+        <div class="bottom">
+
+            Already have account?
+
+            <a href="/login">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>
